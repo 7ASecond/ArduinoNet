@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using System.IO.Ports;
+﻿using System.IO.Ports;
 
 namespace ArduinoNet
 {
@@ -20,7 +14,7 @@ namespace ArduinoNet
         public event ArduinoDataRecievedHandler ArduinoDataRecievedEvent;
 
         private readonly SerialPort _sp = new SerialPort();
-        private bool Stopping = false;
+        private bool _stopping;
 
         private void Log(string message)
         {
@@ -78,7 +72,7 @@ namespace ArduinoNet
 
         private void _sp_PinChanged(object sender, SerialPinChangedEventArgs e)
         {
-            if (!Stopping)
+            if (!_stopping)
             {
                 Log("Pin Changed " + e.EventType.ToString());
             }
@@ -86,7 +80,7 @@ namespace ArduinoNet
 
         private void _sp_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
         {
-            if (!Stopping)
+            if (!_stopping)
             {
                 ErrorMessage(e.EventType.ToString());
             }
@@ -94,23 +88,22 @@ namespace ArduinoNet
 
         private void _sp_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            if (!Stopping)
-            {
-                var sp = (SerialPort)sender;
-                DataRecieved(sp.ReadLine());
-            }
+            if (_stopping) return;
+
+            var sp = (SerialPort)sender;
+            DataRecieved(sp.ReadLine());
         }
 
         public void SendData(string data)
         {
-            if (!Stopping)
+            if (!_stopping)
             {
             }
         }
 
         public void SendData(int data)
         {
-            if (!Stopping)
+            if (!_stopping)
             {
             }
         }
@@ -140,7 +133,7 @@ namespace ArduinoNet
         {
             if (_sp.IsOpen)
             {
-                Stopping = true;
+                _stopping = true;
 
                 //TODO: Closing the Serial Port causes a Known issue to cause apps to hang.
                 //     System.Threading.Thread.Sleep(10);                

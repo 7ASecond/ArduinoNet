@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ArduinoNet;
-using WinControls;
 
 namespace ArduinoNet_Example
 {
@@ -19,7 +12,7 @@ namespace ArduinoNet_Example
         public delegate void ControlDecimalConsumer(Decimal value);  // defines a delegate type
 
 
-        private readonly ArduinoNet.Serial _serial = new Serial("COM9", 115200, false);
+        private readonly Serial _serial = new Serial("COM9", 115200, false);
 
         public Form1()
         {
@@ -39,7 +32,7 @@ namespace ArduinoNet_Example
             SetText(rtbConOut, "LOG: " + message);
         }
 
-        private string lastValue = "0";
+        private string _lastValue = "0";
         private void Serial_ArduinoDataRecievedEvent(string dataRecievedMessage)
         {
             SetText(rtbConOut, "DATA: " + dataRecievedMessage);
@@ -49,15 +42,15 @@ namespace ArduinoNet_Example
                 if (dataRecievedMessage.Length == 5)
                     SetDecimal(Convert.ToDecimal(dataRecievedMessage));
                 else
-                    SetDecimal(Convert.ToDecimal(lastValue));
+                    SetDecimal(Convert.ToDecimal(_lastValue));
             }
             catch (Exception)
             {
-                SetDecimal(Convert.ToDecimal(lastValue));
+                SetDecimal(Convert.ToDecimal(_lastValue));
                 throw;
             }
 
-            lastValue = dataRecievedMessage;
+            _lastValue = dataRecievedMessage;
         }
 
         private void SetDecimal(decimal toDecimal)
