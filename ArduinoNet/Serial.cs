@@ -142,7 +142,7 @@ namespace ArduinoNet
             {
                 Stopping = true;
 
-                //TODO: Known issue to cause apps to hang.
+                //TODO: Closing the Serial Port causes a Known issue to cause apps to hang.
                 //     System.Threading.Thread.Sleep(10);                
                 //      _sp.Close(); 
                 // _sp.Dispose();
