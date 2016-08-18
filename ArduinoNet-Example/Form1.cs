@@ -63,7 +63,7 @@ namespace ArduinoNet_Example
             try
             {
                 if (dataRecievedMessage.Contains('\r')) dataRecievedMessage = dataRecievedMessage.Replace("\r","");
-                if (dataRecievedMessage.Length == 5)
+                if (dataRecievedMessage.Length >= 5)
                     SetDecimal(Convert.ToDecimal(dataRecievedMessage));
                 else
                     SetDecimal(Convert.ToDecimal(_lastValue));
