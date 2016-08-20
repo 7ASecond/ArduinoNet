@@ -18,7 +18,10 @@ namespace ArduinoNet_Cockpit.CockpitControls
 {
 	internal class AirSpeedIndicatorInstrumentControl : InstrumentControl
 	{
-		 #region Fields
+
+		public delegate void ControlConsumer();  // defines a delegate type
+
+		#region Fields
 
 		// Parameters
 		private int _airSpeed; 
@@ -99,17 +102,29 @@ namespace ArduinoNet_Cockpit.CockpitControls
 		{
 			_airSpeed = aircraftAirSpeed;
 
-			Refresh();
+			SetRefresh();
 		}
 
 		#endregion
 
-		# region IDE
+		private void SetRefresh()
+		{
+			if (InvokeRequired)
+			{
+				Invoke(new ControlConsumer(SetRefresh), new object[] { });  // invoking itself
+			}
+			else
+			{
+				Refresh();      // the "functional part", executing only on the main thread
+			}
+		}
+
+		#region IDE
 
 
 
 
-		# endregion
+		#endregion
 
 	}
 }

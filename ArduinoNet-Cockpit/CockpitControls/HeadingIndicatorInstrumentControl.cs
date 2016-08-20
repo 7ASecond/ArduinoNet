@@ -19,6 +19,8 @@ namespace ArduinoNet_Cockpit.CockpitControls
 {
 	internal class HeadingIndicatorInstrumentControl : InstrumentControl
 	{
+		public delegate void ControlConsumer();  // defines a delegate type
+
 		#region Fields
 
 		// Parameters
@@ -105,7 +107,19 @@ namespace ArduinoNet_Cockpit.CockpitControls
 		{
 			_heading = aircraftHeading;
 
-			Refresh();
+			SetRefresh();
+		}
+
+		private void SetRefresh()
+		{
+			if (InvokeRequired)
+			{
+				Invoke(new ControlConsumer(SetRefresh), new object[] { });  // invoking itself
+			}
+			else
+			{
+				Refresh();      // the "functional part", executing only on the main thread
+			}
 		}
 
 		#endregion

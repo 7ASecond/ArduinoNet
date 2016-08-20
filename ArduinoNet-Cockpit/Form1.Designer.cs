@@ -31,54 +31,26 @@ namespace ArduinoNet_Cockpit
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.airSpeed = new ArduinoNet_Cockpit.CockpitControls.AirSpeedIndicatorInstrumentControl();
-            this.altimeter = new ArduinoNet_Cockpit.CockpitControls.AltimeterInstrumentControl();
-            this.attitude = new ArduinoNet_Cockpit.CockpitControls.AttitudeIndicatorInstrumentControl();
-            this.heading = new ArduinoNet_Cockpit.CockpitControls.HeadingIndicatorInstrumentControl();
-            this.turnCoordinator = new ArduinoNet_Cockpit.CockpitControls.TurnCoordinatorInstrumentControl();
-            this.verticalSpeed = new ArduinoNet_Cockpit.CockpitControls.VerticalSpeedIndicatorInstrumentControl();
             this.rtbConOut = new System.Windows.Forms.RichTextBox();
+            this.verticalSpeed = new ArduinoNet_Cockpit.CockpitControls.VerticalSpeedIndicatorInstrumentControl();
+            this.turnCoordinator = new ArduinoNet_Cockpit.CockpitControls.TurnCoordinatorInstrumentControl();
+            this.heading = new ArduinoNet_Cockpit.CockpitControls.HeadingIndicatorInstrumentControl();
+            this.attitude = new ArduinoNet_Cockpit.CockpitControls.AttitudeIndicatorInstrumentControl();
+            this.altimeter = new ArduinoNet_Cockpit.CockpitControls.AltimeterInstrumentControl();
+            this.airSpeed = new ArduinoNet_Cockpit.CockpitControls.AirSpeedIndicatorInstrumentControl();
+            this.btnStartEngines = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // airSpeed
+            // rtbConOut
             // 
-            this.airSpeed.Location = new System.Drawing.Point(12, 13);
-            this.airSpeed.Name = "airSpeed";
-            this.airSpeed.Size = new System.Drawing.Size(250, 250);
-            this.airSpeed.TabIndex = 0;
-            this.airSpeed.Text = "airSpeedIndicatorInstrumentControl1";
-            // 
-            // altimeter
-            // 
-            this.altimeter.Location = new System.Drawing.Point(524, 14);
-            this.altimeter.Name = "altimeter";
-            this.altimeter.Size = new System.Drawing.Size(250, 250);
-            this.altimeter.TabIndex = 1;
-            this.altimeter.Text = "altimeterInstrumentControl1";
-            // 
-            // attitude
-            // 
-            this.attitude.Location = new System.Drawing.Point(12, 269);
-            this.attitude.Name = "attitude";
-            this.attitude.Size = new System.Drawing.Size(250, 250);
-            this.attitude.TabIndex = 2;
-            this.attitude.Text = "attitudeIndicatorInstrumentControl1";
-            // 
-            // heading
-            // 
-            this.heading.Location = new System.Drawing.Point(524, 270);
-            this.heading.Name = "heading";
-            this.heading.Size = new System.Drawing.Size(250, 250);
-            this.heading.TabIndex = 3;
-            this.heading.Text = "headingIndicatorInstrumentControl1";
-            // 
-            // turnCoordinator
-            // 
-            this.turnCoordinator.Location = new System.Drawing.Point(268, 269);
-            this.turnCoordinator.Name = "turnCoordinator";
-            this.turnCoordinator.Size = new System.Drawing.Size(250, 250);
-            this.turnCoordinator.TabIndex = 4;
-            this.turnCoordinator.Text = "turnCoordinatorInstrumentControl1";
+            this.rtbConOut.BackColor = System.Drawing.Color.Black;
+            this.rtbConOut.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.rtbConOut.ForeColor = System.Drawing.Color.Lime;
+            this.rtbConOut.Location = new System.Drawing.Point(0, 590);
+            this.rtbConOut.Name = "rtbConOut";
+            this.rtbConOut.Size = new System.Drawing.Size(791, 149);
+            this.rtbConOut.TabIndex = 6;
+            this.rtbConOut.Text = "";
             // 
             // verticalSpeed
             // 
@@ -88,22 +60,65 @@ namespace ArduinoNet_Cockpit
             this.verticalSpeed.TabIndex = 5;
             this.verticalSpeed.Text = "verticalSpeedIndicatorInstrumentControl1";
             // 
-            // rtbConOut
+            // turnCoordinator
             // 
-            this.rtbConOut.BackColor = System.Drawing.Color.Black;
-            this.rtbConOut.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.rtbConOut.ForeColor = System.Drawing.Color.Lime;
-            this.rtbConOut.Location = new System.Drawing.Point(0, 557);
-            this.rtbConOut.Name = "rtbConOut";
-            this.rtbConOut.Size = new System.Drawing.Size(791, 182);
-            this.rtbConOut.TabIndex = 6;
-            this.rtbConOut.Text = "";
+            this.turnCoordinator.Location = new System.Drawing.Point(268, 269);
+            this.turnCoordinator.Name = "turnCoordinator";
+            this.turnCoordinator.Size = new System.Drawing.Size(250, 250);
+            this.turnCoordinator.TabIndex = 4;
+            this.turnCoordinator.Text = "turnCoordinatorInstrumentControl1";
+            // 
+            // heading
+            // 
+            this.heading.Location = new System.Drawing.Point(524, 270);
+            this.heading.Name = "heading";
+            this.heading.Size = new System.Drawing.Size(250, 250);
+            this.heading.TabIndex = 3;
+            this.heading.Text = "headingIndicatorInstrumentControl1";
+            // 
+            // attitude
+            // 
+            this.attitude.Location = new System.Drawing.Point(12, 269);
+            this.attitude.Name = "attitude";
+            this.attitude.Size = new System.Drawing.Size(250, 250);
+            this.attitude.TabIndex = 2;
+            this.attitude.Text = "attitudeIndicatorInstrumentControl1";
+            // 
+            // altimeter
+            // 
+            this.altimeter.Location = new System.Drawing.Point(524, 14);
+            this.altimeter.Name = "altimeter";
+            this.altimeter.Size = new System.Drawing.Size(250, 250);
+            this.altimeter.TabIndex = 1;
+            this.altimeter.Text = "altimeterInstrumentControl1";
+            // 
+            // airSpeed
+            // 
+            this.airSpeed.Location = new System.Drawing.Point(12, 13);
+            this.airSpeed.Name = "airSpeed";
+            this.airSpeed.Size = new System.Drawing.Size(250, 250);
+            this.airSpeed.TabIndex = 0;
+            this.airSpeed.Text = "airSpeedIndicatorInstrumentControl1";
+            // 
+            // btnStartEngines
+            // 
+            this.btnStartEngines.BackColor = System.Drawing.Color.Black;
+            this.btnStartEngines.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStartEngines.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnStartEngines.Location = new System.Drawing.Point(681, 561);
+            this.btnStartEngines.Name = "btnStartEngines";
+            this.btnStartEngines.Size = new System.Drawing.Size(93, 23);
+            this.btnStartEngines.TabIndex = 7;
+            this.btnStartEngines.Text = "Start Engines";
+            this.btnStartEngines.UseVisualStyleBackColor = false;
+            this.btnStartEngines.Click += new System.EventHandler(this.btnStartEngines_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(791, 739);
+            this.Controls.Add(this.btnStartEngines);
             this.Controls.Add(this.rtbConOut);
             this.Controls.Add(this.verticalSpeed);
             this.Controls.Add(this.turnCoordinator);
@@ -128,6 +143,7 @@ namespace ArduinoNet_Cockpit
         private CockpitControls.TurnCoordinatorInstrumentControl turnCoordinator;
         private CockpitControls.VerticalSpeedIndicatorInstrumentControl verticalSpeed;
         private System.Windows.Forms.RichTextBox rtbConOut;
+        private System.Windows.Forms.Button btnStartEngines;
     }
 }
 

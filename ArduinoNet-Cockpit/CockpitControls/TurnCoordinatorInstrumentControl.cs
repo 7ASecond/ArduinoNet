@@ -19,17 +19,19 @@ namespace ArduinoNet_Cockpit.CockpitControls
 {
 	internal class TurnCoordinatorInstrumentControl : InstrumentControl
 	{
+		public delegate void ControlConsumer();  // defines a delegate type
+
 		#region Fields
 
 		// Parameters
-	    private float _turnRate;
-	    private float _turnQuality;
+		private float _turnRate;
+		private float _turnQuality;
 
 		// Images
-	    private readonly Bitmap _bmpCadran = new Bitmap(Properties.Resources.TurnCoordinator_Background);
-	    private readonly Bitmap _bmpBall = new Bitmap(Properties.Resources.TurnCoordinatorBall);
-	    private readonly Bitmap _bmpAircraft = new Bitmap(Properties.Resources.TurnCoordinatorAircraft);
-	    private readonly Bitmap _bmpMarks = new Bitmap(Properties.Resources.TurnCoordinatorMarks);
+		private readonly Bitmap _bmpCadran = new Bitmap(Properties.Resources.TurnCoordinator_Background);
+		private readonly Bitmap _bmpBall = new Bitmap(Properties.Resources.TurnCoordinatorBall);
+		private readonly Bitmap _bmpAircraft = new Bitmap(Properties.Resources.TurnCoordinatorAircraft);
+		private readonly Bitmap _bmpMarks = new Bitmap(Properties.Resources.TurnCoordinatorMarks);
 
 		#endregion
 
@@ -116,7 +118,19 @@ namespace ArduinoNet_Cockpit.CockpitControls
 			_turnRate = aircraftTurnRate;
 			_turnQuality = aircraftTurnQuality;
 
-			Refresh();
+			SetRefresh();
+		}
+
+		private void SetRefresh()
+		{
+			if (InvokeRequired)
+			{
+				Invoke(new ControlConsumer(SetRefresh), new object[] { });  // invoking itself
+			}
+			else
+			{
+				Refresh();      // the "functional part", executing only on the main thread
+			}
 		}
 
 		#endregion

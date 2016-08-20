@@ -19,6 +19,9 @@ namespace ArduinoNet_Cockpit.CockpitControls
 {
 	internal class AttitudeIndicatorInstrumentControl : InstrumentControl
 	{
+
+		public delegate void ControlConsumer();  // defines a delegate type
+
 		#region Fields
 
 		// Parameters
@@ -108,7 +111,19 @@ namespace ArduinoNet_Cockpit.CockpitControls
 			_pitchAngle = aircraftPitchAngle;
 			_rollAngle = aircraftRollAngle * Math.PI / 180;
 
-			Refresh();
+			SetRefresh();
+		}
+
+		private void SetRefresh()
+		{
+			if (InvokeRequired)
+			{
+				Invoke(new ControlConsumer(SetRefresh), new object[] { });  // invoking itself
+			}
+			else
+			{
+				Refresh();      // the "functional part", executing only on the main thread
+			}
 		}
 
 		#endregion
