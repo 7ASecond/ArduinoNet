@@ -89,6 +89,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="bin\Debug\ArduinoNet-Cockpit.exe.config" />
+    <None Include="bin\Debug\ArduinoNet-Cockpit.vshost.exe.config" />
+    <None Include="bin\Debug\ArduinoNet-Cockpit.vshost.exe.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -202,6 +205,32 @@
       <Project>{26d1856a-85b4-4932-be07-c774414dd6b8}</Project>
       <Name>ArduinoNet</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\ArduinoNet-Cockpit.exe" />
+    <Content Include="bin\Debug\ArduinoNet-Cockpit.pdb" />
+    <Content Include="bin\Debug\ArduinoNet-Cockpit.vshost.exe" />
+    <Content Include="bin\Debug\ArduinoNet.dll" />
+    <Content Include="bin\Debug\ArduinoNet.pdb" />
+    <Content Include="bin\Debug\Resources\AirSpeedIndicator_Background.bmp" />
+    <Content Include="bin\Debug\Resources\AirSpeedNeedle.bmp" />
+    <Content Include="bin\Debug\Resources\Altimeter_Background.bmp" />
+    <Content Include="bin\Debug\Resources\Bandeau_Dérouleur.bmp" />
+    <Content Include="bin\Debug\Resources\HeadingIndicator_Aircraft.bmp" />
+    <Content Include="bin\Debug\Resources\HeadingIndicator_Background.bmp" />
+    <Content Include="bin\Debug\Resources\HeadingWeel.bmp" />
+    <Content Include="bin\Debug\Resources\Horizon_Background.bmp" />
+    <Content Include="bin\Debug\Resources\Horizon_GroundSky.bmp" />
+    <Content Include="bin\Debug\Resources\Indicator_Background.bmp" />
+    <Content Include="bin\Debug\Resources\LongNeedleAltimeter.bmp" />
+    <Content Include="bin\Debug\Resources\Maquette_Avion.bmp" />
+    <Content Include="bin\Debug\Resources\SmallNeedleAltimeter.bmp" />
+    <Content Include="bin\Debug\Resources\TurnCoordinatorAircraft.bmp" />
+    <Content Include="bin\Debug\Resources\TurnCoordinatorBall.bmp" />
+    <Content Include="bin\Debug\Resources\TurnCoordinatorMarks.bmp" />
+    <Content Include="bin\Debug\Resources\TurnCoordinator_Background.bmp" />
+    <Content Include="bin\Debug\Resources\VerticalSpeedIndicator_Background.bmp" />
+    <Content Include="bin\Debug\Resources\VerticalSpeedNeedle.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
