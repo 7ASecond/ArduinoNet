@@ -19,16 +19,16 @@ namespace ArduinoNet_Cockpit.CockpitControls
 	internal class VerticalSpeedIndicatorInstrumentControl : InstrumentControl
 	{
 
-        public delegate void ControlConsumer();  // defines a delegate type
+		public delegate void ControlConsumer();  // defines a delegate type
 
-        #region Fields
+		#region Fields
 
-        // Parameters
-        private int _verticalSpeed; 
+		// Parameters
+		private int _verticalSpeed; 
 
 		// Images
-	    private readonly Bitmap _bmpCadran = new Bitmap(Properties.Resources.VerticalSpeedIndicator_Background);
-	    private readonly Bitmap _bmpNeedle = new Bitmap(Properties.Resources.VerticalSpeedNeedle);
+		private readonly Bitmap _bmpCadran = new Bitmap(Properties.Resources.VerticalSpeedIndicator_Background);
+		private readonly Bitmap _bmpNeedle = new Bitmap(Properties.Resources.VerticalSpeedNeedle);
 
 		#endregion
 
@@ -102,22 +102,22 @@ namespace ArduinoNet_Cockpit.CockpitControls
 		{
 			_verticalSpeed = aircraftVerticalSpeed;
 
-		    SetRefresh();
+			SetRefresh();
 
 		}
 
 
-	    private void SetRefresh()
-	    {
-            if (InvokeRequired)
-            {
-                Invoke(new ControlConsumer(SetRefresh), new object[] {  });  // invoking itself
-            }
-            else
-            {
-               Refresh();      // the "functional part", executing only on the main thread
-            }
-        }
+		private void SetRefresh()
+		{
+			if (InvokeRequired)
+			{
+				Invoke(new ControlConsumer(SetRefresh), new object[] {  });  // invoking itself
+			}
+			else
+			{
+			   Refresh();      // the "functional part", executing only on the main thread
+			}
+		}
 		#endregion
 
 	}
