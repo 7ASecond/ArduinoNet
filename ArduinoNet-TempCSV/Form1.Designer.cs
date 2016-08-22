@@ -33,6 +33,8 @@
             this.rtbConOut = new System.Windows.Forms.RichTextBox();
             this.cbBlockingSave = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.cbComPort = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tracker
@@ -81,11 +83,32 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "When unchecked you can open the saved file while it is still being used.";
             // 
+            // cbComPort
+            // 
+            this.cbComPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbComPort.FormattingEnabled = true;
+            this.cbComPort.Location = new System.Drawing.Point(764, 306);
+            this.cbComPort.Name = "cbComPort";
+            this.cbComPort.Size = new System.Drawing.Size(121, 21);
+            this.cbComPort.TabIndex = 5;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(666, 310);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(92, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Arduino COM Port";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(897, 350);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cbComPort);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbBlockingSave);
             this.Controls.Add(this.rtbConOut);
@@ -95,6 +118,7 @@
             this.Name = "Form1";
             this.Text = "Save Arduino Data as CSV";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -106,6 +130,8 @@
         private System.Windows.Forms.RichTextBox rtbConOut;
         private System.Windows.Forms.CheckBox cbBlockingSave;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbComPort;
+        private System.Windows.Forms.Label label2;
     }
 }
 

@@ -10,13 +10,11 @@ namespace ArduinoNet_TempCSV
     {
         public delegate void ControlStringConsumer(RichTextBox control, string text);  // defines a delegate type
         public delegate void ControlDecimalConsumer(decimal value);  // defines a delegate type
-        private readonly Serial _serial = new Serial("COM9", 115200, false);
+        private  Serial _serial; 
 
         public Form1()
         {
-            InitializeComponent();
-            _serial.ArduinoDataRecievedEvent += _serial_ArduinoDataRecievedEvent;
-            _serial.OpenConnection();
+            InitializeComponent();           
         }
 
         private string _lastValue = "0";
@@ -132,6 +130,15 @@ namespace ArduinoNet_TempCSV
             {
                 _saveWithBlocking = false;
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            cbComPort.Items.Add(Hardware.GetArduinoPort());
+            cbComPort.SelectedIndex = 0;
+           _serial = new Serial(Hardware.GetArduinoPort(), 115200, false);
+            _serial.ArduinoDataRecievedEvent += _serial_ArduinoDataRecievedEvent;
+            _serial.OpenConnection();
         }
     }
 }
