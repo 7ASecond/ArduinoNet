@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ArduinoNet;
 
@@ -15,7 +9,7 @@ namespace ArduinoNet_TempCSV
     public partial class Form1 : Form
     {
         public delegate void ControlStringConsumer(RichTextBox control, string text);  // defines a delegate type
-        public delegate void ControlDecimalConsumer(Decimal value);  // defines a delegate type
+        public delegate void ControlDecimalConsumer(decimal value);  // defines a delegate type
         private readonly Serial _serial = new Serial("COM9", 115200, false);
 
         public Form1()
