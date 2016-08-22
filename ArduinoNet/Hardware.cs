@@ -20,7 +20,7 @@ namespace ArduinoNet
             foreach (var device in searcher.Get())
             {
                 var res = device.GetPropertyValue("Name");
-                if (res.ToString().Contains("Arduino") || res.ToString().Contains("Genuino"))
+                if (res.ToString().ToLower().Contains("arduino") || res.ToString().ToLower().Contains("genuino") || res.ToString().ToLowerInvariant().Contains("guino"))
                     return (string)device.GetPropertyValue("DeviceId");
             }
             return string.Empty;
