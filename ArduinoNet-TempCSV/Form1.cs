@@ -22,12 +22,12 @@ namespace ArduinoNet_TempCSV
         private string _lastValue = "0";
         private void _serial_ArduinoDataRecievedEvent(string dataRecievedMessage)
         {
-            SetText(rtbConOut,dataRecievedMessage);
+            SetText(rtbConOut, dataRecievedMessage);
             try
             {
                 if (dataRecievedMessage.Contains('\r')) dataRecievedMessage = dataRecievedMessage.Replace("\r", "");
-              
-                    SetDecimal(Convert.ToDecimal(dataRecievedMessage));              
+
+                SetDecimal(Convert.ToDecimal(dataRecievedMessage));
             }
             catch (Exception)
             {
@@ -80,15 +80,58 @@ namespace ArduinoNet_TempCSV
         }
 
         // File saved to desktop
-        private readonly StreamWriter _sw = File.AppendText(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "ArduinoData.txt"));
+        private  StreamWriter _sw = File.AppendText(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "ArduinoData.txt"));
+        private readonly string _savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "ArduinoData.txt");
         private void SaveData(string data)
         {
-            _sw.WriteLineAsync(data + Environment.NewLine); // may write out of turn but the TimeStamp will allow us to sort it and put it back together correctly
+            
+            if (_saveWithBlocking)
+            {        
+                if(_sw.BaseStream == null) _sw = File.AppendText(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "ArduinoData.txt"));
+                _sw.WriteLineAsync(data + Environment.NewLine);
+            }
+            // may write out of turn but the TimeStamp will allow us to sort it and put it back together correctly
+            else
+            {            
+                _sw?.Close();    
+                FileStream fs = null;
+                StreamWriter sw = null;
+
+                try
+                {
+                    fs = new FileStream(_savePath, FileMode.Append, FileAccess.Write, FileShare.Read);
+                    sw = new StreamWriter(fs);
+                    sw.WriteLine(data + Environment.NewLine);
+                    sw?.Close();
+                    fs?.Close();
+                }
+                catch (Exception ex)
+                {
+                    SetText(rtbConOut, "ERROR: " + ex.Message);
+                }
+                finally
+                {
+                    sw?.Close();
+                    fs?.Close();
+                }
+            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _sw.Close();
+            _sw?.Close(); // Close if not Null
+        }
+
+
+        private bool _saveWithBlocking = true;
+        private void cbBlockingSave_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbBlockingSave.Checked)
+                _saveWithBlocking = true;
+            else
+            {
+                _saveWithBlocking = false;
+            }
         }
     }
 }
